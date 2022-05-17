@@ -46,19 +46,15 @@ public class SimpleTests {
     void closeBrowser() { closeWebDriver();}
     */
 
-
     @Tag("siteTests")
-    @DisplayName("Проверка текстов на странице Кабинет")
+    @DisplayName("Проверка текстов на стр. Кабинет")
     @Test
     void expectTextTest() {
         open("https://kabinet.dreamkas.ru/");
         $(".lg-banner__lead").shouldHave(text("Помогает отслеживать продажи"));
         $(byText("Откройте новые возможности вашей кассы")).shouldBe(visible, Duration.ofSeconds(10));
         $$(".lg-registration__text").find(text("Зарегистрируйтесь в Кабинете Дримкас, подключите кассу и отслеживайте работу магазина в реальном времени")).shouldBe(visible, Duration.ofSeconds(10));
-        $(By.linkText("Посмотреть документацию к API")).shouldBe(visible, Duration.ofSeconds(10));
-        //$(By.linkText("Посмотреть 1 документацию 1 к 1 API")).shouldBe(visible, Duration.ofSeconds(10)); //negative test
+        $(By.linkText("Посмотреть документацию к API")).isDisplayed();
     }
-
-
 
 }
