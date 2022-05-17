@@ -1,9 +1,7 @@
 package tests;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
@@ -12,41 +10,23 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
 
-public class SimpleTests {
+//import org.junit.jupiter.api.Test;
 
-     /*
+public class KabinetFirstTests {
+
     @BeforeAll
-    static void openPage() {
+    static void beforeAll() {
+        //Configuration.baseUrl = "https://kabinet.dreamkas.ru";
+        //open("https://kabinet.dreamkas.ru/");
         Configuration.browserSize = "1920x1080";
-        open("https://biocad.ru");
-
-            @BeforeEach
-    void preconditionBrowser() {
-        baseUrl = "https://biocad.ru";
-        browserSize = "1920x1080";
+        //open();
     }
-    }
-
-      */
-
-     /*
-    @AfterEach
-    void closeBrowser() { closeWebDriver();}
-    */
 
     @AfterAll
-    public static void afterAll() {
-        closeWebDriver();
-    }
+    public static void afterAll() { closeWebDriver(); }
 
-     /*
-    @AfterEach
-    void closeBrowser() { closeWebDriver();}
-    */
-
-    @Tag("siteTests")
+    //@Tag("siteTests")
     @DisplayName("Проверка текстов на стр. Кабинет")
     @Test
     void expectTextTest() {
@@ -57,11 +37,12 @@ public class SimpleTests {
         $(By.linkText("Посмотреть документацию к API")).isDisplayed();
     }
 
-    @Tag("siteTests")
+    //@Tag("siteTests")
     @DisplayName("Отправки формы (заполнены не все поля)")
     @Test
     void fillFormTest() {
         open("https://kabinet.dreamkas.ru/");
+        $(byText("Откройте новые возможности вашей кассы")).shouldBe(visible, Duration.ofSeconds(10));
         $(By.name("name")).setValue("Test");
         $(By.name("login")).setValue("ok@dex.ru");
         $(By.name("password")).setValue("pass");

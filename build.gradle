@@ -62,6 +62,7 @@ tasks.withType(Test) {
     }
 }
 
+/*
 //@Tag тесты для раздела Контакты
 task contacts_tests(type: Test) {
     useJUnitPlatform{
@@ -82,3 +83,15 @@ task site_tests(type: Test) {
         includeTags "siteTests"
     }
 }
+
+ */
+
+
+
+/*
+//Execution failed for task ':test'.
+//> No tests found for given includes: [Examples.SimpleTestsStep1](filter.includeTestsMatching)
+test {
+    useTestNG()
+}
+*/
