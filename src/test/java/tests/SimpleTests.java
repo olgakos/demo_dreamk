@@ -57,4 +57,19 @@ public class SimpleTests {
         $(By.linkText("Посмотреть документацию к API")).isDisplayed();
     }
 
+    @Tag("siteTests")
+    @DisplayName("Отправки формы (заполнены не все поля)")
+    @Test
+    void fillFormTest() {
+        open("https://kabinet.dreamkas.ru/");
+        $(By.name("name")).setValue("Test");
+        $(By.name("login")).setValue("ok@dex.ru");
+        $(By.name("password")).setValue("pass");
+        //$(By.name("confirmPassword")).setValue("pass"); // ! намеренно не заполняю обязательное поле
+        $("button.lk-dialog-form__button").click(); // отправить
+        //Expect (окно предупреждения) :
+        $$(".md-input-message-animation").find(text("Заполните это поле")).shouldBe(visible, Duration.ofSeconds(10));
+        //$$(".md-input-message-animation").find(text("Тра ля ля")).shouldBe(visible, Duration.ofSeconds(10)); //negative test
+        //sleep(Long.parseLong("5000"));
+    }
 }
